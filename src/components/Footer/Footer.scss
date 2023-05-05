@@ -1,0 +1,51 @@
+.footer {
+  margin: 0;
+  padding: 79px 70px 20px;
+  background-color: #fafafa;
+
+  &__title {
+    margin: 0;
+    padding-bottom: 20px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #a0a0a0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  &__copyright {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  &__contact {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    margin: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}

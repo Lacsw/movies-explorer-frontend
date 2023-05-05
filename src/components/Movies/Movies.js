@@ -1,20 +1,13 @@
-import AboutMe from '../AboutMe/AboutMe';
-import AboutProject from '../AboutProject/AboutProject';
-import Portfolio from '../Portfolio/Portfolio';
-import Promo from '../Promo/Promo';
-import Techs from '../Techs/Techs';
-import './Main.scss';
+import Header from '../Header/Header';
+import './Movies.scss';
 
-function Main() {
+function Movies() {
   return (
-    <div className='main'>
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-    </div>
+    <section className='movies'>
+      <Header />
+      MOVIES
+    </section>
   );
 }
 
-export default Main;
+export default Movies;

@@ -1,11 +1,11 @@
-import './Footer.scss';
+import './Navigation.scss';
 
-function Footer() {
+function Navigation() {
   return (
     <div>
-      <h1>Footer</h1>
+      <h1>Navigation</h1>
     </div>
   );
 }
 
-export default Footer;
+export default Navigation;

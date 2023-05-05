@@ -1,36 +1,60 @@
 import './AboutMe.scss';
+import photo from '../../images/photo.jpeg';
 
 function AboutMe() {
   return (
-    <div>
-      <h3>Студент</h3>
-      <div>
-        <h2>Роман Фролов</h2>
-        <p>Фронтенд-разработчик, 29 лет</p>
-        <p>
-          Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня
-          есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом.
-          Недавно начал кодить. С 2015 года работал в компании «СКБ Контур».
-          После того, как прошёл курс по веб-разработке, начал заниматься
-          фриланс-заказами и ушёл с постоянной работы.
-        </p>
+    <section className='about-me'>
+      <h2 className='about-me__title'>Студент</h2>
+      <hr className='about-me__title-underline' />
+      <div className='about-me__main'>
         <img
-          src='#'
-          alt='aboutme'
+          src={photo}
+          alt='главная фотография'
+          className='about-me__photo'
         />
-        <ul>
-          <li>
-            <a href='https://github.com/Lacsw'>GitHub</a>
-          </li>
-          <li>
-            <a href='https://github.com/Lacsw'>Telegram</a>
-          </li>
-          <li>
-            <a href='https://github.com/Lacsw'>LinkedIN</a>
-          </li>
-        </ul>
+        <div>
+          <h3 className='about-me__subtitle'>Роман Фролов</h3>
+          <p className='about-me__quote'>Фронтенд-разработчик, 29 лет</p>
+          <p className='about-me__text'>
+            Я из Санкт-Петербуга, закончил Университет ИТМО по специальности
+            "информационная безопасность". Работал по направлению в Комитете по
+            градостроительству и архитектуре, на работе начал увлекатся
+            разработкой и принял решение уйти в фронтенд, так как нравится
+            делать красивые функциональные интерфейсы и сразу видеть результат работы.
+          </p>
+
+          <ul className='about-me__contact'>
+            <li>
+              <a
+                className='about-me__link'
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://github.com/Lacsw'>
+                Github
+              </a>
+            </li>
+            <li>
+              <a
+                className='about-me__link'
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://github.com/Lacsw'>
+                Telegram
+              </a>
+            </li>
+            <li>
+              <a
+                className='about-me__link'
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://github.com/Lacsw'>
+                LinkedIn
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

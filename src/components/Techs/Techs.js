@@ -2,25 +2,26 @@ import './Techs.scss';
 
 function Techs() {
   return (
-    <div>
-      <h3>Технологии</h3>
-      <div>
-        <h2>7 технологий</h2>
-        <p>
+    <section className='techs'>
+      <h2 className='techs__title'>Технологии</h2>
+      <hr className='techs__title-underline' />
+      <div className='techs__info'>
+        <h3 className='techs__subtitle'>7 технологий</h3>
+        <p className='techs__text'>
           На курсе веб-разработки мы освоили технологии, которые применили в
           дипломном проекте.
         </p>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JS</li>
-          <li>React</li>
-          <li>Git</li>
-          <li>Express.js</li>
-          <li>MongoDB</li>
+        <ul className='techs__list'>
+          <li className='techs__tech'>HTML</li>
+          <li className='techs__tech'>CSS</li>
+          <li className='techs__tech'>JS</li>
+          <li className='techs__tech'>React</li>
+          <li className='techs__tech'>Git</li>
+          <li className='techs__tech'>Express.js</li>
+          <li className='techs__tech'>mongoDB</li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
 
