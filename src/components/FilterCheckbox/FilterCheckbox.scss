@@ -1,0 +1,66 @@
+.filter-checkbox {
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 0 30px 0 29px;
+  }
+
+  &__container {
+    display: inline-block;
+    height: 20px;
+    width: 36px;
+    position: relative;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked {
+      + .filter-checkbox__slider {
+        background-color: #2be080;
+        &::before {
+          transform: translateX(16px);
+        }
+      }
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    background-color: #ebebeb;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition: 0.4s;
+    cursor: pointer;
+
+    &::before {
+      height: 16px;
+      width: 16px;
+      background-color: #fff;
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: 0.4s;
+    }
+
+    &_round {
+      border-radius: 20px;
+      &::before {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__quote {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0;
+  }
+}

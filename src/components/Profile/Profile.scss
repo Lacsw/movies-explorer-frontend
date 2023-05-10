@@ -1,0 +1,90 @@
+.profile {
+  &__content {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 70px auto 80px;
+  }
+
+  &__title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  &__form {
+    width: 410px;
+    margin: 0;
+    padding: 125px 0 200px;
+  }
+
+  &__fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: left;
+  }
+
+  &__input {
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    outline: none;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 16px;
+    padding-top: 17px;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__link {
+    margin: 0;
+    font-size: 13px;
+    line-height: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    color: #000;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &_type {
+      &_edit {
+        padding-bottom: 16px;
+      }
+      &_logout {
+        font-weight: 500;
+        color: #ee3465;
+      }
+    }
+  }
+}

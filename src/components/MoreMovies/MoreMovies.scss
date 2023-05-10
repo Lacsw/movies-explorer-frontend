@@ -1,0 +1,23 @@
+.more-movies {
+  margin: 50px auto 80px;
+
+  &__btn {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    min-width: 320px;
+    height: 36px;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    transition: opacity 0.5s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+      background-color: #e8e8e8;
+    }
+  }
+}

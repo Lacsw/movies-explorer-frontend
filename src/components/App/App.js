@@ -1,14 +1,18 @@
 import { Route, Routes } from 'react-router';
 
 import './App.scss';
+
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
-    <div className='app'>
+    <main className='app'>
       <Routes>
         <Route
           path='/'
@@ -28,14 +32,18 @@ function App() {
         />
         <Route
           path='/signin'
-          element={<h2>Login</h2>}
+          element={<Login />}
         />
         <Route
           path='/signup'
-          element={<h2>Register</h2>}
+          element={<Register />}
+        />
+          <Route
+          path='*'
+          element={<PageNotFound />}
         />
       </Routes>
-    </div>
+    </main>
   );
 }
 
