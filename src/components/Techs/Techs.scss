@@ -48,6 +48,7 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   &__tech {
@@ -62,5 +63,28 @@
     font-size: 14px;
     line-height: 17px;
     letter-spacing: -0.04em;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 90px 50px;
+
+    &__subtitle {
+      padding-top: 80px;
+    }
+
+    &__text {
+      padding-top: 22px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    &__list {
+      padding-top: 83px;
+    }
+
+    &__tech {
+      width: 84px;
+      height: 57px;
+    }
   }
 }

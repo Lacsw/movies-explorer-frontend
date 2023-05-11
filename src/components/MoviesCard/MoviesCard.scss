@@ -1,6 +1,5 @@
 .card {
   background-color: #fdfdfd;
-  border-radius: 10px;
   overflow: hidden;
   max-width: 364px;
   position: relative;
@@ -87,6 +86,17 @@
     &:hover {
       cursor: pointer;
       opacity: 0.6;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    max-width: 339px; 
+
+    &__caption {
+      margin: 14px 14px 0;
+    }
+
+    &__movie-time {
+      margin: 14px 0 14px 14px;
     }
   }
 }

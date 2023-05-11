@@ -72,4 +72,19 @@
     line-height: 17px;
     color: #a0a0a0;
   }
+
+  @media screen and (max-width: 1023px) {
+    padding: 90px 50px;
+
+    &__info {
+      margin-bottom: 93px;
+      gap: 30px;
+    }
+
+    &__text {
+      padding-top: 22px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
 }

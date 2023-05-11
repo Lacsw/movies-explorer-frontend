@@ -20,7 +20,7 @@
     padding: 0 19px;
   }
 
-  &__img{
+  &__img {
     padding-right: 10px;
   }
 
@@ -57,5 +57,10 @@
       cursor: pointer;
       opacity: 0.6;
     }
+  }
+
+  @media screen and (max-width: 1023px) {
+   margin: 80px 30px 10px; 
+   padding-bottom: 109px;
   }
 }

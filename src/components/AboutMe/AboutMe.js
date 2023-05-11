@@ -12,7 +12,7 @@ function AboutMe() {
           alt='главная фотография'
           className='about-me__photo'
         />
-        <div>
+        <div className='about-me__info'>
           <h3 className='about-me__subtitle'>Роман Фролов</h3>
           <p className='about-me__quote'>Фронтенд-разработчик, 29 лет</p>
           <p className='about-me__text'>

@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    gap: 270px;
+    gap: 50px;
   }
 
   &__photo {
@@ -39,6 +39,10 @@
     object-fit: cover;
     box-sizing: border-box;
     border-radius: 10px;
+  }
+
+  &__info {
+    width: 364px;
   }
 
   &__quote {
@@ -54,6 +58,9 @@
     margin: 0;
     padding-top: 26px;
     text-align: justify;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
   }
 
   &__contact {
@@ -73,6 +80,38 @@
 
     &:hover {
       opacity: 0.6;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 90px 50px;
+
+    &__subtitle {
+      font-size: 40px;
+      line-height: 40px;
+      padding-bottom: 16px;
+    }
+
+    &__photo {
+      width: 255px;
+      height: 307px;
+    }
+
+    &__quote {
+      padding-top: 16px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    &__text {
+      padding-top: 20px;
+      font-size: 12px;
+      line-height: 18px;
+      text-align: left;
+    }
+
+    &__contact {
+      padding-top: 87px;
     }
   }
 }

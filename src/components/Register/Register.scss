@@ -128,4 +128,12 @@
       opacity: 0.6;
     }
   }
+
+  @media screen and (max-width: 1023px) {
+    margin: 232px auto;
+
+    &__set {
+      margin-bottom: 150px;
+    }
+  }
 }
