@@ -42,7 +42,7 @@
   }
 
   &__info {
-    width: 364px;
+    max-width: 364px;
   }
 
   &__quote {
@@ -112,6 +112,50 @@
 
     &__contact {
       padding-top: 87px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 60px 14px 70px;
+
+    &__title {
+      font-size: 18px;
+      line-height: 22px;
+      padding-bottom: 28px;
+    }
+
+    &__main {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    &__photo {
+      width: 292px;
+      height: 352px;
+    }
+
+    &__subtitle {
+      font-size: 30px;
+      line-height: 36px;
+    }
+
+    &__quote {
+      padding-top: 20px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    &__text {
+      padding-top: 20px;
+      font-size: 11px;
+      line-height: 16px;
+      text-align: left;
+    }
+
+    &__contact {
+      padding-top: 40px;
+      gap: 8px;
     }
   }
 }

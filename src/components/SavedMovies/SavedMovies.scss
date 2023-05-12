@@ -2,4 +2,8 @@
   &__content {
     margin: 0 0 247px;
   }
+
+  @media screen and (max-width: 767px) {
+    margin: 0 0 166px;
+  }
 }

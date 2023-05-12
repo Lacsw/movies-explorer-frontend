@@ -121,6 +121,9 @@
     padding-left: 6px;
     text-decoration: none;
     color: #ff6838;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
     transition: opacity 0.5s ease-in-out;
 
     &hover {
@@ -134,6 +137,37 @@
 
     &__set {
       margin-bottom: 150px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: 56px auto 30px;
+
+    &__header {
+      align-items: center;
+    }
+
+    &__title {
+      padding: 50px 0 80px;
+    }
+
+    &__form {
+      width: 260px;
+    }
+
+    &__submit-btn {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    &__already {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    &__link {
+      font-size: 12px;
+      line-height: 15px;
     }
   }
 }

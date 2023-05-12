@@ -20,7 +20,7 @@
   &__item {
     text-align: left;
     border-bottom: 1px solid #e8e8e8;
-    padding: 20px 0;
+    padding: 19px 0;
 
     &:first-of-type {
       padding-top: 0;
@@ -51,9 +51,29 @@
 
   @media screen and (max-width: 1023px) {
     padding: 0 50px 90px;
+
     &__link {
       font-size: 28px;
       line-height: 50px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0 14px 70px;
+
+    &__title {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &__list {
+      padding: 40px 0 0;
+    }
+
+    &__link {
+      font-size: 18px;
+      line-height: 28px;
+      background-size: 4%;
     }
   }
 }

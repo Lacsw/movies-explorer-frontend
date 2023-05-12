@@ -136,4 +136,39 @@
       margin-bottom: 150px;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    margin: 56px auto 30px;
+
+    &__header {
+      align-items: center;
+    }
+
+    &__set {
+      margin-bottom: 250px;
+    }
+
+    &__title {
+      padding: 50px 0 80px;
+    }
+
+    &__form {
+      width: 260px;
+    }
+
+    &__submit-btn {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    &__already {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    &__link {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
 }

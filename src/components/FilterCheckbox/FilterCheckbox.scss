@@ -69,4 +69,14 @@
       padding: 0 20px;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    &__wrap {
+      padding-top: 45px;
+    }
+
+    &__quote {
+      font-size: 11px;
+    }
+  }
 }

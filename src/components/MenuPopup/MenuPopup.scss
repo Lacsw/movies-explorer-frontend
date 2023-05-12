@@ -19,7 +19,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    
   }
 
   &__wrap {
@@ -90,7 +89,7 @@
     box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     background: lighten(#fff, 3%);
-    transition: all 150ms linear;
+    transition: opacity 150ms linear;
 
     &:hover {
       background: darken(#e8e8e8, 1.5%);
@@ -112,5 +111,16 @@
   &__profile-img {
     width: 26px;
     height: 26px;
+  }
+
+  @media screen and (max-width: 480px) {
+    &__wrap {
+      padding-top: 144px;
+      padding-bottom: 46px;
+    }
+
+    &__container {
+      width: 100%;
+    }
   }
 }

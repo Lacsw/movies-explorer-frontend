@@ -87,4 +87,30 @@
       height: 57px;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 70px 18px;
+
+    &__title {
+      font-size: 18px;
+      line-height: 22px;
+      padding-bottom: 28px;
+    }
+
+    &__subtitle {
+      font-size: 30px;
+      line-height: 36px;
+      padding-top: 60px;
+    }
+
+    &__text {
+      font-size: 11px;
+      line-height: 16px;
+      padding-top: 24px;
+    }
+
+    &__list {
+      padding: 50px 10px 0;
+    }
+  }
 }

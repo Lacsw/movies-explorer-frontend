@@ -9,4 +9,9 @@
     margin: 70px 30px 30px;
     gap: 30px;
   }
+
+  @media screen and (max-width: 767px) {
+    margin: 40px 10px 26px;
+    gap: 14px;
+  }
 }

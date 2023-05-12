@@ -43,14 +43,14 @@ function Profile() {
               </div>
             </fieldset>
           </form>
-          <div className='profile__tooltip'>
-            <Link className='profile__link profile__link_type_edit'>
-              Редактировать
-            </Link>
-            <Link className='profile__link profile__link_type_logout'>
-              Выйти из аккаунта
-            </Link>
-          </div>
+        </div>
+        <div className='profile__tooltip'>
+          <Link className='profile__link profile__link_type_edit'>
+            Редактировать
+          </Link>
+          <Link className='profile__link profile__link_type_logout'>
+            Выйти из аккаунта
+          </Link>
         </div>
       </div>
     </section>

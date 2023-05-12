@@ -28,6 +28,10 @@
     border: none;
     outline: none;
     width: 100%;
+    color: #a0a0a0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
   }
 
   &__btn {
@@ -60,7 +64,42 @@
   }
 
   @media screen and (max-width: 1023px) {
-   margin: 80px 30px 10px; 
-   padding-bottom: 109px;
+    margin: 80px 30px 10px;
+    padding-bottom: 109px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: 80px 10px 10px;
+    padding-bottom: 44px;
+
+    &__container {
+      flex-direction: column;
+      box-shadow: none;
+      height: auto;
+    }
+
+    &__wrap {
+      box-sizing: border-box;
+      box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+      height: 72px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      padding: 0 20px;
+    }
+
+    &__img {
+      display: none;
+    }
+
+    &__btn {
+      &::after {
+        display: none;
+      }
+    }
+
+    &__input {
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }
