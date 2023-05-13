@@ -9,7 +9,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Header() {
   const { pathname } = useLocation();
-  const isLoggedIn = true;
+  // const isLoggedIn = true;
 
   return (
     <header className={`header ${pathname !== '/' ? 'header_logged' : ''}`}>

@@ -38,7 +38,7 @@ function App() {
           path='/signup'
           element={<Register />}
         />
-          <Route
+        <Route
           path='*'
           element={<PageNotFound />}
         />
