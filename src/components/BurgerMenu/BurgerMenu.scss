@@ -1,7 +1,7 @@
 .burger {
   display: none;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
 
     &__btn {

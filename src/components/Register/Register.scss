@@ -57,6 +57,11 @@
     height: 23px;
     margin-bottom: 25px;
     padding-bottom: 10px;
+    transition: all 0.5s ease-in-out;
+
+    &:focus {
+      border-bottom: 1px solid #ff6838;
+    }
 
     &_error {
       color: #ee3465;

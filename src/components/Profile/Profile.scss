@@ -2,7 +2,7 @@
   &__content {
     background-color: transparent;
     width: 100%;
-    height: calc(100vh - 74px - 150px);
+    height: calc(100vh - 74px - 200px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,7 +94,7 @@
   @media screen and (max-width: 1023px) {
     &__content {
       margin: 236px auto 269px;
-      height: calc(100vh - 74px - 505px);
+      height: calc(100vh - 74px - 245px);
     }
 
     &__form {
@@ -106,7 +106,7 @@
   @media screen and (max-width: 767px) {
     &__content {
       margin: 70px auto 40px;
-      height: calc(100vh - 74px - 110px);
+      height: calc(100vh - 74px - 90px);
     }
 
     &__form {

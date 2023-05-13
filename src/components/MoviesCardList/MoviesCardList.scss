@@ -1,17 +1,27 @@
 .movie-cardlist {
-  margin: 80px 70px 10px;
+  max-width: 1140px;
+  padding: 80px 70px 10px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 37px 24px;
 
+  @media screen and (max-width: 1279px) {
+    justify-content: center;
+  }
+
   @media screen and (max-width: 1023px) {
-    margin: 70px 30px 30px;
+    max-width: 708px;
+    padding: 70px 30px 30px;
+    justify-content: flex-start;
     gap: 30px;
   }
 
   @media screen and (max-width: 767px) {
-    margin: 40px 10px 26px;
+    max-width: 300px;
+    justify-content: center;
+    padding: 40px 10px 26px;
     gap: 14px;
   }
 }

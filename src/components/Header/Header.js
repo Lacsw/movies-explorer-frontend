@@ -11,20 +11,28 @@ function Header() {
   const { pathname } = useLocation();
   // const isLoggedIn = true;
 
-  return (
-    <header className={`header ${pathname !== '/' ? 'header_logged' : ''}`}>
-      <Logo />
-      {pathname !== '/' ? (
-        <>
-          <Navigation />
-          <BurgerMenu />
-        </>
-      ) : (
-        <AuthNavigation />
-      )}
+  const isHasHeader =
+    pathname === '/' ||
+    pathname === '/movies' ||
+    pathname === '/saved-movies' ||
+    pathname === '/profile';
 
-      {/* {isLoggedIn ? <Navigation /> : <AuthNavigation />} */}
-    </header>
+  return (
+    isHasHeader && (
+      <header className={`header ${pathname !== '/' ? 'header_logged' : ''}`}>
+        <Logo />
+        {pathname !== '/' ? (
+          <>
+            <Navigation />
+            <BurgerMenu />
+          </>
+        ) : (
+          <AuthNavigation />
+        )}
+
+        {/* {isLoggedIn ? <Navigation /> : <AuthNavigation />} */}
+      </header>
+    )
   );
 }
 

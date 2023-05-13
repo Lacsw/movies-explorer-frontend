@@ -1,22 +1,17 @@
 import './Profile.scss';
 
-import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 
 function Profile() {
   return (
-    <section className='profile'>
-      <Header />
-
-      <div className='profile__content'>
+    <main className='profile'>
+      <section className='profile__content'>
         <div className='profile__wrap'>
           <h2 className='profile__title'>Привет, Роман!</h2>
           <form className='profile__form'>
             <fieldset className='profile__fieldset'>
               <div className='profile__info'>
-                <label
-                  for='name'
-                  className='profile__label'>
+                <label for='name' className='profile__label'>
                   Имя
                 </label>
                 <input
@@ -28,9 +23,7 @@ function Profile() {
                 />
               </div>
               <div className='profile__info'>
-                <label
-                  for='email'
-                  className='profile__label'>
+                <label for='email' className='profile__label'>
                   E-mail
                 </label>
                 <input
@@ -52,8 +45,8 @@ function Profile() {
             Выйти из аккаунта
           </Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }
 
