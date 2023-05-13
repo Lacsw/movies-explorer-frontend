@@ -1,7 +1,7 @@
 # Project: [Movies Explorer Frontend](https://github.com/Lacsw/movies-explorer-frontend)
 
 URI: https://movies-tourer.nomoredomains.monster
-Figma: https://disk.yandex.ru/d/ekvDogErTOzTLg
+Figma: https://disk.yandex.ru/d/8lGU1qxlm1PRkw
 
 ## Description
 This is the frontend part of diploma project of the web deveveloper courses. This repo includes REST API created with NodeJS and ExpressJS Framework. Provides authentication and authorisation functionallity for users, also create movie, like and delete them.
