@@ -42,7 +42,7 @@
   }
 
   &__info {
-    max-width: 364px;
+    max-width: 600px;
   }
 
   &__quote {
@@ -57,7 +57,7 @@
   &__text {
     margin: 0;
     padding-top: 26px;
-    text-align: justify;
+    text-align: left;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
@@ -85,6 +85,10 @@
 
   @media screen and (max-width: 1023px) {
     padding: 90px 50px;
+
+    &__info {
+      max-width: 364px;
+    }
 
     &__subtitle {
       font-size: 40px;
@@ -150,7 +154,6 @@
       padding-top: 20px;
       font-size: 11px;
       line-height: 16px;
-      text-align: left;
     }
 
     &__contact {
