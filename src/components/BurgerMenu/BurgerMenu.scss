@@ -1,0 +1,23 @@
+.burger {
+  display: none;
+
+  @media screen and (max-width: 1023px) {
+    display: flex;
+
+    &__btn {
+      border: none;
+      width: 44px;
+      height: 44px;
+      background-image: url('../../images/burger-btn.svg');
+      background-color: transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 0.5s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.6;
+      }
+    }
+  }
+}

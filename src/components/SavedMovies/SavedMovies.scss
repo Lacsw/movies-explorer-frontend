@@ -1,0 +1,11 @@
+.saved-movies {
+  &__content {
+    margin: 0 0 247px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    &__content {
+      margin: 0 0 143px;
+    }
+  }
+}

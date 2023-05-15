@@ -1,0 +1,48 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  padding: 246px 0 60px;
+  margin: 0 auto;
+
+  &__title {
+    margin: 0;
+    padding-bottom: 5px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 140px;
+    line-height: 169px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    padding-bottom: 184px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  &__button {
+    border: none;
+    background: transparent;
+    color: #ff6838;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 408px 0 222px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 329px 0 30px;
+
+    &__subtitle {
+      padding-bottom: 284px;
+    }
+  }
+}

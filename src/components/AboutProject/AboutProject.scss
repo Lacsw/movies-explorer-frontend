@@ -1,0 +1,129 @@
+.about-project {
+  margin: 0;
+  padding: 110px 70px;
+  box-sizing: border-box;
+
+  &__title {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    text-align: left;
+    margin: 0;
+    padding-bottom: 22px;
+  }
+
+  &__title-underline {
+    margin: 0;
+  }
+
+  &__info {
+    display: flex;
+    gap: 40px;
+    text-align: left;
+    margin: 70px 0 110px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+  }
+
+  &__text {
+    margin: 0;
+    padding-top: 26px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__progress {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  &__weeks {
+    margin: 0;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    &_backend {
+      background-color: #2be080;
+    }
+
+    &_frontend {
+      background-color: #f2f2f2;
+    }
+  }
+
+  &__sub {
+    margin: 0;
+    padding-top: 14px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #a0a0a0;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 90px 50px;
+
+    &__info {
+      margin-bottom: 93px;
+      gap: 30px;
+    }
+
+    &__text {
+      padding-top: 22px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 70px 18px;
+
+    &__title {
+      font-size: 18px;
+      line-height: 22px;
+      padding-bottom: 28px;
+    }
+
+    &__info {
+      margin: 60px 0;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    &__text {
+      padding-top: 16px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    &__weeks {
+      font-size: 11px;
+      line-height: 13px;
+      height: 35px;
+    }
+
+    &__sub {
+      font-size: 11px;
+      line-height: 13px;
+      padding-top: 10px;
+    }
+  }
+}

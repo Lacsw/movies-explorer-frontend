@@ -1,0 +1,117 @@
+.card {
+  background-color: #fdfdfd;
+  overflow: hidden;
+  max-width: 364px;
+  position: relative;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+
+  &:hover {
+    cursor: pointer;
+
+    .card__delete {
+      visibility: visible;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 85%;
+  }
+
+  &__like-btn {
+    all: initial;
+    padding: 0;
+    background-image: url('../../images/like-btn.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 12px;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+      background-image: url('../../images/like-btn-active.svg');
+    }
+
+    &_active {
+      background-image: url('../../images/like-btn-active.svg');
+    }
+  }
+
+  &__caption {
+    margin: 17px 23px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__movie-time {
+    text-align: left;
+    margin: 17px 0 16px 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #a0a0a0;
+  }
+
+  &__delete {
+    all: initial;
+    padding: 0;
+    background-image: url('../../images/delete-btn.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 6.84px;
+    height: 6.72px;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    max-width: 339px;
+
+    &__caption {
+      margin: 14px 14px 0;
+    }
+
+    &__movie-time {
+      margin: 14px 0 14px 14px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    max-width: 300px;
+
+    &__title {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    &__movie-time {
+      font-size: 10px;
+      line-height: 12px;
+    }
+  }
+}
