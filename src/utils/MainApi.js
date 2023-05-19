@@ -58,14 +58,15 @@ class MainApi {
         movieId: data['id'],
         nameRU: data['nameRU'],
         nameEN: data['nameEN'],
+        year: data['year'],
       }),
       credentials: 'include',
     });
     return this._checkResponse(response);
   }
 
-  async deleteCard(data) {
-    const response = await fetch(`${this._baseUrl}/movies/${data.id}`, {
+  async deleteMovie(data) {
+    const response = await fetch(`${this._baseUrl}/movies/${data._id}`, {
       method: 'DELETE',
       headers: this._headers,
       credentials: 'include',

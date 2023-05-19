@@ -82,7 +82,7 @@ function Register({ onRegister }) {
             <label className='signup__field'>
               Пароль
               <input
-                className='signup__input signup__input_type_password signup__input_error'
+                className='signup__input signup__input_type_password'
                 type='password'
                 name='password'
                 placeholder='Пароль'
