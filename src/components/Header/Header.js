@@ -7,9 +7,8 @@ import AuthNavigation from '../AuthNavigation/AuthNavigation';
 import Logo from '../Logo/Logo';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Header() {
+function Header({ isLoggedIn }) {
   const { pathname } = useLocation();
-  // const isLoggedIn = true;
 
   const isHasHeader =
     pathname === '/' ||
@@ -21,16 +20,22 @@ function Header() {
     isHasHeader && (
       <header className={`header ${pathname !== '/' ? 'header_logged' : ''}`}>
         <Logo />
-        {pathname !== '/' ? (
+        {/* {pathname !== '/' ? (
           <>
             <Navigation />
             <BurgerMenu />
           </>
         ) : (
           <AuthNavigation />
-        )}
+        )} */}
 
-        {/* {isLoggedIn ? <Navigation /> : <AuthNavigation />} */}
+        {isLoggedIn ? (
+          <>
+            <Navigation /> <BurgerMenu />
+          </>
+        ) : (
+          <AuthNavigation />
+        )}
       </header>
     )
   );

@@ -3,20 +3,31 @@ import './MoviesCard.scss';
 
 function MoviesCard({ movie }) {
   const { pathname } = useLocation();
+
   const isLiked = movie.like || false;
   const cardLikeButtonClassName = `card__like-btn ${
     isLiked && 'card__like-btn_active'
   }`;
 
+  const convertedDuration = (minutes) => {
+    const minutesInHour = 60;
+    return `${Math.floor(minutes / minutesInHour)}ч  ${
+      minutes % minutesInHour
+    }м`;
+  };
+
   return (
     <article className='card'>
-      <img
-        className='card__image'
-        src={movie.image}
-        alt={`Изображение`}
-      />
+      <a href={movie.trailerLink} target='_blank' rel='noreferrer noopener'>
+        <img
+          className='card__image'
+          src={`https://api.nomoreparties.co/${movie.image.url}`}
+          alt={`Изображение ${movie.name}`}
+        />
+      </a>
+
       <div className='card__caption'>
-        <h2 className='card__title'>{movie.name}</h2>
+        <h2 className='card__title'>{movie.nameRU}</h2>
         {pathname === '/movies' ? (
           <button
             className={cardLikeButtonClassName}
@@ -33,7 +44,7 @@ function MoviesCard({ movie }) {
       </div>
 
       <div className='card__movie-time'>
-        <span>{movie.duration}</span>
+        <span>{convertedDuration(movie.duration)}</span>
       </div>
     </article>
   );
