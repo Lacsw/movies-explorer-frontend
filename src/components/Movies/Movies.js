@@ -10,6 +10,8 @@ import MoreMovies from '../MoreMovies/MoreMovies';
 import Preloader from '../Preloader/Preloader';
 import mainApi from '../../utils/MainApi';
 
+import { errors } from '../../utils/constants';
+
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -18,6 +20,7 @@ function Movies() {
   const [isLoading, setIsLoading] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [page, setPage] = useState(0);
+  const [hasError, setHasError] = useState(false);
 
   const fetchMovies = useCallback(async () => {
     try {
@@ -28,11 +31,8 @@ function Movies() {
       ]);
       setMovies(initialMovies);
       setSavedMovies(savedMovies);
-      // const response = await moviesApi.getMovies();
-
-      // setMovies(response);
     } catch (error) {
-      console.log(error); //Обработать ошибку
+      setHasError(true);
     } finally {
       setIsLoading(false);
     }
@@ -43,6 +43,7 @@ function Movies() {
   }, []);
 
   useEffect(() => {
+    setHasError(false);
     fetchMovies();
 
     const savedSearch = localStorage.getItem('search');
@@ -84,6 +85,7 @@ function Movies() {
 
       return nameRU.includes(str) || nameEN.includes(str);
     });
+
     localStorage.setItem('search', searchString);
     localStorage.setItem('isShort', String(isShort));
 
@@ -130,10 +132,10 @@ function Movies() {
 
       await mainApi.deleteMovie(deletedMovie);
       setSavedMovies((state) => state.filter((i) => i.movieId !== movie.id));
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  console.log(savedMovies);
 
   return (
     <main className='movies'>
@@ -144,12 +146,23 @@ function Movies() {
           searchString={searchString}
           isShort={isShort}
         />
-        <MoviesCardList
-          movies={moviesToRender}
-          savedMovies={savedMovies}
-          onLikeMovie={handleSaveMovie}
-          // onDeleteMovie={handleDeleteMovie}
-        />
+
+        {hasError ? (
+          <p className='movies__search-error'>{errors.SERVER_CONNECTION}</p>
+        ) : (
+          <>
+            {!moviesToRender.length && searchString ? (
+              <p className='movies__search-error'>{errors.FILMS_NOT_FOUND}</p>
+            ) : (
+              <MoviesCardList
+                movies={moviesToRender}
+                savedMovies={savedMovies}
+                onLikeMovie={handleSaveMovie}
+              />
+            )}
+          </>
+        )}
+
         {filteredMovies > moviesToRender && (
           <MoreMovies handleMoreBtnClick={handleMoreBtnClick} />
         )}

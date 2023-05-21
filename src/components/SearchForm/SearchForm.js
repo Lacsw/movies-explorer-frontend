@@ -12,6 +12,7 @@ function SearchForm({
   searchString,
 }) {
   const [inputValue, setInputValue] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setInputValue(searchString);
@@ -23,7 +24,12 @@ function SearchForm({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleSearch(inputValue);
+    if (inputValue === '') {
+      setError('Нужно ввести ключевое слово');
+    } else {
+      handleSearch(inputValue);
+      setError('');
+    }
   };
 
   return (
@@ -36,17 +42,17 @@ function SearchForm({
             className='search-form__input'
             placeholder='Фильм'
             autoComplete='off'
+            type='text'
             value={inputValue}
-            required
           />
           <button className='search-form__btn' />
         </div>
-
         <FilterCheckbox
           handleIsShortCheckbox={handleIsShortCheckbox}
           isShort={isShort}
         />
       </div>
+      {!inputValue && <span className='search-form__error'>{error}</span>}
     </form>
   );
 }

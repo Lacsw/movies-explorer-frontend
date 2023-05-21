@@ -59,7 +59,8 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
+  // baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
+  baseUrl: 'http://localhost:3000',
 });
 
 export default auth;
