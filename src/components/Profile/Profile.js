@@ -8,11 +8,11 @@ import useFormWithValidation from '../../hooks/useFormWithValidation';
 import mainApi from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-import { EMAIL_REGEXP, errors } from '../../utils/constants';
+import { EMAIL_REGEXP, errors as err } from '../../utils/constants';
 
 const Profile = ({ onLogout }) => {
   const currentUser = useContext(CurrentUserContext);
-  const { values, setValues, handleChange, isValid } = useFormWithValidation();
+  const { values, errors, setValues, handleChange, isValid } = useFormWithValidation();
   const [infoTooltipState, setInfoTooltipState] = useState({
     opened: false,
     status: 'fail',
@@ -33,7 +33,7 @@ const Profile = ({ onLogout }) => {
         setInfoTooltipState({
           opened: true,
           status: 'success',
-          text: errors.USER_INFO_UPDATE,
+          text: err.USER_INFO_UPDATE,
         });
       })
       .catch((error) => {
@@ -41,13 +41,13 @@ const Profile = ({ onLogout }) => {
           setInfoTooltipState({
             opened: true,
             status: 'fail',
-            text: errors.EMAIL_DUPLICATE,
+            text: err.EMAIL_DUPLICATE,
           });
         } else {
           setInfoTooltipState({
             opened: true,
             status: 'fail',
-            text: errors.FAIL_SERVER,
+            text: err.FAIL_SERVER,
           });
         }
       });
