@@ -35,17 +35,6 @@ class Auth {
     return this._checkResponse(response);
   }
 
-  // async checkAuth() {
-  //   const response = await fetch(`${this._baseUsl}/users/me`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     credentials: 'include',
-  //   });
-  //   return this._checkResponse(response);
-  // }
-
   async signout() {
     const response = await fetch(`${this._baseUsl}/signout`, {
       method: 'POST',
@@ -59,8 +48,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  // baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
 });
 
 export default auth;

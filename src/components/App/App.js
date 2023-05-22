@@ -17,12 +17,21 @@ import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+
+import { errors } from '../../utils/constants';
 
 function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isAppInit, setIsAppInit] = useState(false);
+  const [infoTooltipState, setInfoTooltipState] = useState({
+    opened: false,
+    status: 'fail',
+    text: '',
+  });
 
   useEffect(() => {
     mainApi
@@ -35,8 +44,11 @@ function App() {
       .catch((error) => {
         setLoggedIn(false);
         console.log(error);
+      })
+      .finally(() => {
+        setIsAppInit(true);
       });
-  }, []);
+  }, [navigate, pathname]);
 
   const handleLogin = (formValue) => {
     auth
@@ -46,20 +58,71 @@ function App() {
         navigate('/movies', { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        if (error === 'Ошибка 409') {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.FAIL_LOGIN,
+          });
+        } else {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.FAIL_SERVER,
+          });
+        }
       });
   };
 
   const handleReigster = (data) => {
-    auth.signup(data).then(() => {
-      handleLogin({ email: data.email, password: data.password });
-    });
+    auth
+      .signup(data)
+      .then(() => {
+        handleLogin({ email: data.email, password: data.password });
+      })
+      .catch((error) => {
+        if (error === 'Ошибка 409') {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.EMAIL_DUPLICATE,
+          });
+        } else if (error === 'Ошибка 400') {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.EMAIL_DUPLICATE,
+          });
+        } else {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.FAIL_SERVER,
+          });
+        }
+      });
   };
 
   const handleLogout = () => {
-    auth.signout().then(() => {
-      setLoggedIn(false);
-      navigate('/');
+    auth
+      .signout()
+      .then(() => {
+        localStorage.clear();
+        setLoggedIn(false);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  if (!isAppInit) {
+    return null;
+  }
+
+  const closePopup = () => {
+    setInfoTooltipState({
+      opened: false,
     });
   };
 
@@ -86,6 +149,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      <InfoTooltip state={infoTooltipState} onClose={closePopup} />
     </CurrentUserContext.Provider>
   );
 }

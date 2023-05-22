@@ -1,40 +1,42 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './Navigation.scss';
 import profile from '../../images/profile-btn.svg';
 
 const Navigation = () => {
   const { pathname } = useLocation();
+  const activeLink = ({ isActive }) =>
+    isActive
+      ? `navigation__link navigation__link_active ${loggedLink}`
+      : `navigation__link ${loggedLink}`;
+  const loggedLink = `${pathname !== '/' ? 'navigation__link_logged' : ''}`;
 
   return (
     <nav className='navigation'>
-      <Link
-        to='/movies'
-        className={`navigation__link navigation__link_movies ${
-          pathname !== '/' ? 'navigation__link_logged' : ''
-        }`}>
+      <NavLink to='/movies' className={activeLink}>
         Фильмы
-      </Link>
-      <Link
-        to='/saved-movies'
-        className={`navigation__link navigation__link_saved-movies ${
-          pathname !== '/' ? 'navigation__link_logged' : ''
-        }`}>
-        Сохраненные фильмы
-      </Link>
+      </NavLink>
 
-      <button className='navigation__profile-btn'>
-        <Link
-          to='/profile'
-          className='navigation__profile'>
+      <NavLink to='/saved-movies' className={activeLink}>
+        Сохраненные фильмы
+      </NavLink>
+
+      <NavLink
+        to='/profile'
+        className={({ isActive }) =>
+          isActive
+            ? 'navigation__profile navigation__profile_active'
+            : 'navigation__profile'
+        }>
+        <button className='navigation__profile-btn'>
           Аккаунт
-        </Link>
-        <img
-          src={profile}
-          alt='профиль'
-          className='navigation__profile-img'
-        />
-      </button>
+          <img
+            src={profile}
+            alt='профиль'
+            className='navigation__profile-img'
+          />
+        </button>
+      </NavLink>
     </nav>
   );
 };

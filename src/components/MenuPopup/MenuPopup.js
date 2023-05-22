@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import './MenuPopup.scss';
@@ -6,6 +6,9 @@ import './MenuPopup.scss';
 import profile from '../../images/profile-btn.svg';
 
 function MenuPopup({ isOpen, onClose }) {
+  const activeLink = ({ isActive }) =>
+    isActive ? 'menu-popup__link menu-popup__link_active' : 'menu-popup__link';
+
   useEffect(() => {
     if (isOpen) {
       const closeByEsc = (evt) => {
@@ -29,40 +32,36 @@ function MenuPopup({ isOpen, onClose }) {
       className={`menu-popup ${isOpen && 'menu-popup_opened'}`}
       onClick={closeByOver}>
       <div className='menu-popup__container'>
-        <button
-          className='menu-popup__close-btn'
-          onClick={onClose}
-        />
+        <button className='menu-popup__close-btn' onClick={onClose} />
         <div className='menu-popup__wrap'>
           <nav className='menu-popup__links'>
-            <Link
-              to='/'
-              className='menu-popup__link'>
+            <NavLink to='/' className={activeLink}>
               Главная
-            </Link>
-            <Link
-              to='/movies'
-              className='menu-popup__link menu-popup__link_active'>
+            </NavLink>
+            <NavLink to='/movies' className={activeLink}>
               Фильмы
-            </Link>
-            <Link
-              to='/saved-movies'
-              className='menu-popup__link'>
+            </NavLink>
+            <NavLink to='/saved-movies' className={activeLink}>
               Сохраненые фильмы
-            </Link>
+            </NavLink>
           </nav>
-          <button className='menu-popup__profile-btn'>
-            <Link
-              to='/profile'
-              className='menu-popup__profile'>
+
+          <NavLink
+            to='/profile'
+            className={({ isActive }) =>
+              isActive
+                ? 'menu-popup__profile menu-popup__profile_active'
+                : 'menu-popup__profile'
+            }>
+            <button className='menu-popup__profile-btn'>
               Аккаунт
-            </Link>
-            <img
-              src={profile}
-              alt='профиль'
-              className='menu-popup__profile-img'
-            />
-          </button>
+              <img
+                src={profile}
+                alt='профиль'
+                className='menu-popup__profile-img'
+              />
+            </button>
+          </NavLink>
         </div>
       </div>
     </div>

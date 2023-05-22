@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Profile.scss';
@@ -6,22 +6,23 @@ import './Profile.scss';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import mainApi from '../../utils/MainApi';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-import { EMAIL_REGEXP } from '../../utils/constants';
+import { EMAIL_REGEXP, errors } from '../../utils/constants';
 
-function Profile({ onLogout }) {
+const Profile = ({ onLogout }) => {
   const currentUser = useContext(CurrentUserContext);
-  const { values, setValues, handleChange, errors, isValid } =
-    useFormWithValidation();
-  const isHasChange =
+  const { values, setValues, handleChange, isValid } = useFormWithValidation();
+  const [infoTooltipState, setInfoTooltipState] = useState({
+    opened: false,
+    status: 'fail',
+    text: '',
+  });
+  const hasChange =
     currentUser.name === values.name && currentUser.email === values.email;
 
   useEffect(() => {
-    setValues((prev) => ({
-      ...prev,
-      name: currentUser.name,
-      email: currentUser.email,
-    }));
+    setValues({ name: currentUser.name, email: currentUser.email });
   }, [currentUser.name, currentUser.email, setValues]);
 
   const handleSubmit = (event) => {
@@ -29,11 +30,33 @@ function Profile({ onLogout }) {
     mainApi
       .updateUserInfo(values)
       .then(() => {
-        console.log('Успех');
+        setInfoTooltipState({
+          opened: true,
+          status: 'success',
+          text: errors.USER_INFO_UPDATE,
+        });
       })
       .catch((error) => {
-        console.log('Упс'); //обработать ошибку
+        if (error === 'Ошибка 409') {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.EMAIL_DUPLICATE,
+          });
+        } else {
+          setInfoTooltipState({
+            opened: true,
+            status: 'fail',
+            text: errors.FAIL_SERVER,
+          });
+        }
       });
+  };
+
+  const closePopup = () => {
+    setInfoTooltipState({
+      opened: false,
+    });
   };
 
   return (
@@ -90,10 +113,10 @@ function Profile({ onLogout }) {
             </fieldset>
             <div className='profile__tooltip'>
               <button
-                disabled={isHasChange}
+                disabled={hasChange}
                 type='submit'
                 className={`profile__link profile__link_type_edit ${
-                  isHasChange || !isValid ? 'profile__link_disabled' : ''
+                  hasChange || !isValid ? 'profile__link_disabled' : ''
                 }`}>
                 Редактировать
               </button>
@@ -106,8 +129,9 @@ function Profile({ onLogout }) {
           </form>
         </div>
       </section>
+      <InfoTooltip state={infoTooltipState} onClose={closePopup} />
     </main>
   );
-}
+};
 
 export default Profile;

@@ -81,24 +81,20 @@ function SavedMovies() {
         handleSearch={handleSearch}
         handleIsShortCheckbox={handleIsShortCheckbox}
       />
-      {hasError ? (
+      {hasError && (
         <p className='movies__search-error'>{errors.SERVER_CONNECTION}</p>
-      ) : (
-        <>
-          {!filteredMovies.length && searchString ? (
-            <p className='movies__search-error'>{errors.FILMS_NOT_FOUND}</p>
-          ) : (
-            <div className='saved-movies__content'>
-              <MoviesCardList
-                movies={filteredMovies}
-                onDeleteMovie={handleDeleteMovie}
-              />
-            </div>
-          )}
-        </>
       )}
 
-      {isLoading && <Preloader />}
+      {isLoading ? (
+        <Preloader />
+      ) : !filteredMovies.length && searchString ? (
+        <p className='movies__search-error'>{errors.FILMS_NOT_FOUND}</p>
+      ) : (
+        <MoviesCardList
+          movies={filteredMovies}
+          onDeleteMovie={handleDeleteMovie}
+        />
+      )}
     </main>
   );
 }

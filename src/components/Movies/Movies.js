@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { debounce } from 'lodash';
 
 import './Movies.scss';
 
@@ -29,8 +30,12 @@ function Movies() {
         moviesApi.getMovies(),
         mainApi.getSavedMovies(),
       ]);
+
       setMovies(initialMovies);
       setSavedMovies(savedMovies);
+
+      localStorage.setItem('beatMovies', JSON.stringify(initialMovies));
+      localStorage.setItem('savedUserMovies', JSON.stringify(savedMovies));
     } catch (error) {
       setHasError(true);
     } finally {
@@ -38,16 +43,15 @@ function Movies() {
     }
   }, []);
 
-  const handleResize = useCallback(() => {
+  const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
-  }, []);
+  }, 150);
 
   useEffect(() => {
-    setHasError(false);
-    fetchMovies();
-
     const savedSearch = localStorage.getItem('search');
     const savedIsShort = localStorage.getItem('isShort');
+    const savedBeatMovies = JSON.parse(localStorage.getItem('beatMovies'));
+    const savedUserMovies = JSON.parse(localStorage.getItem('savedUserMovies'));
 
     if (savedSearch) {
       setSearchString(savedSearch);
@@ -55,7 +59,13 @@ function Movies() {
     if (savedIsShort) {
       setIsShort(savedIsShort === 'true');
     }
-  }, [fetchMovies]);
+    if (savedBeatMovies) {
+      setMovies(savedBeatMovies);
+    }
+    if (savedUserMovies) {
+      setSavedMovies(savedUserMovies);
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -65,9 +75,14 @@ function Movies() {
     };
   });
 
-  const handleSearch = useCallback((inputValue) => {
-    setSearchString(inputValue);
-  }, []);
+  const handleSearch = useCallback(
+    (inputValue) => {
+      setHasError(false);
+      fetchMovies();
+      setSearchString(inputValue);
+    },
+    [fetchMovies]
+  );
 
   const filteredMovies = useMemo(() => {
     if (!searchString) {
@@ -147,26 +162,25 @@ function Movies() {
           isShort={isShort}
         />
 
-        {hasError ? (
+        {hasError && (
           <p className='movies__search-error'>{errors.SERVER_CONNECTION}</p>
+        )}
+
+        {isLoading ? (
+          <Preloader />
+        ) : !moviesToRender.length && searchString ? (
+          <p className='movies__search-error'>{errors.FILMS_NOT_FOUND}</p>
         ) : (
-          <>
-            {!moviesToRender.length && searchString ? (
-              <p className='movies__search-error'>{errors.FILMS_NOT_FOUND}</p>
-            ) : (
-              <MoviesCardList
-                movies={moviesToRender}
-                savedMovies={savedMovies}
-                onLikeMovie={handleSaveMovie}
-              />
-            )}
-          </>
+          <MoviesCardList
+            movies={moviesToRender}
+            savedMovies={savedMovies}
+            onLikeMovie={handleSaveMovie}
+          />
         )}
 
         {filteredMovies > moviesToRender && (
           <MoreMovies handleMoreBtnClick={handleMoreBtnClick} />
         )}
-        {isLoading && <Preloader />}
       </section>
     </main>
   );

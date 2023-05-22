@@ -76,8 +76,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.movies-tourer.nomoredomains.monster',
   headers: {
     'Content-Type': 'application/json',
   },
