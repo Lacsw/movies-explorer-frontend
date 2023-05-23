@@ -8,11 +8,16 @@ import useFormWithValidation from '../../hooks/useFormWithValidation';
 import mainApi from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-import { EMAIL_REGEXP, errors as err } from '../../utils/constants';
+import {
+  EMAIL_REGEXP,
+  NAME_REGEXP,
+  errors as err,
+} from '../../utils/constants';
 
 const Profile = ({ onLogout }) => {
   const currentUser = useContext(CurrentUserContext);
-  const { values, errors, setValues, handleChange, isValid } = useFormWithValidation();
+  const { values, errors, setValues, handleChange, isValid } =
+    useFormWithValidation();
   const [infoTooltipState, setInfoTooltipState] = useState({
     opened: false,
     status: 'fail',
@@ -81,6 +86,7 @@ const Profile = ({ onLogout }) => {
                   placeholder='Имя'
                   value={values['name'] || ''}
                   onChange={handleChange}
+                  pattern={NAME_REGEXP.source}
                 />
                 <span
                   className={`profile__input-error name-input-error ${
@@ -101,7 +107,7 @@ const Profile = ({ onLogout }) => {
                   placeholder='Email'
                   value={values['email'] || ''}
                   onChange={handleChange}
-                  pattern={EMAIL_REGEXP}
+                  pattern={EMAIL_REGEXP.source}
                 />
                 <span
                   className={`profile__input-error email-input-error ${

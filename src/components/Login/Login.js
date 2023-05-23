@@ -50,7 +50,7 @@ function Login({ onLogin }) {
                 required
                 value={values.email || ''}
                 onChange={handleChange}
-                pattern={EMAIL_REGEXP}
+                pattern={EMAIL_REGEXP.source}
               />
               <span
                 className={`signin__input-error email-input-error ${

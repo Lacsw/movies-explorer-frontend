@@ -6,7 +6,7 @@ import './Register.scss';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-import { EMAIL_REGEXP } from '../../utils/constants';
+import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
 
 function Register({ onRegister }) {
   const { values, handleChange, errors, isValid, resetForm } =
@@ -47,6 +47,7 @@ function Register({ onRegister }) {
                 required
                 value={values.name || ''}
                 onChange={handleChange}
+                pattern={NAME_REGEXP.source}
               />
               <span
                 className={`signin__input-error name-input-error ${
@@ -69,7 +70,7 @@ function Register({ onRegister }) {
                 required
                 value={values.email || ''}
                 onChange={handleChange}
-                pattern={EMAIL_REGEXP}
+                pattern={EMAIL_REGEXP.source}
               />
               <span
                 className={`signin__input-error email-input-error ${

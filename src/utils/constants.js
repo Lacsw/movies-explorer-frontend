@@ -1,4 +1,5 @@
-export const EMAIL_REGEXP = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+export const EMAIL_REGEXP = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+export const NAME_REGEXP = /^[a-zA-Z0-9-а-яА-Я\s]+$/;
 
 export const errors = {
   SERVER_CONNECTION:
