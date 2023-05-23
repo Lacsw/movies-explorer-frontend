@@ -130,6 +130,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app'>
         <Header isLoggedIn={loggedIn} />
+
         <Routes>
           <Route element={<ProtectedRoute isLoggedIn={loggedIn} />}>
             <Route path='/movies' element={<Movies />} />
@@ -139,12 +140,17 @@ function App() {
               element={<Profile onLogout={handleLogout} />}
             />
           </Route>
+
           <Route path='/' element={<Main />} />
-          <Route path='/signin' element={<Login onLogin={handleLogin} />} />
-          <Route
-            path='/signup'
-            element={<Register onRegister={handleReigster} />}
-          />
+
+          <Route element={<ProtectedRoute isLoggedIn={!loggedIn} />}>
+            <Route path='/signin' element={<Login onLogin={handleLogin} />} />
+            <Route
+              path='/signup'
+              element={<Register onRegister={handleReigster} />}
+            />
+          </Route>
+
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer />
