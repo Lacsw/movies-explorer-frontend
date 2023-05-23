@@ -11,7 +11,17 @@ import MoreMovies from '../MoreMovies/MoreMovies';
 import Preloader from '../Preloader/Preloader';
 import mainApi from '../../utils/MainApi';
 
-import { errors } from '../../utils/constants';
+import {
+  BIG_SIZE_SCREEN,
+  CARDS_ON_BIG_SCREEN,
+  CARDS_ON_MEDIUM_SCREEN,
+  CARDS_ON_SMALL_SCREEN,
+  MEDIUM_SIZE_SCREEN,
+  PLUS_CARDS_ON_BIG_SCREEN,
+  PLUS_CARDS_ON_MEDIUM_SCREEN,
+  SHORT_MOVIE_MAX_DURATION,
+  errors,
+} from '../../utils/constants';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -104,7 +114,7 @@ function Movies() {
       const nameEN = movie.nameEN.toLowerCase();
       const str = searchString.toLowerCase();
 
-      if (isShort && movie.duration > 40) {
+      if (isShort && movie.duration > SHORT_MOVIE_MAX_DURATION) {
         return false;
       }
 
@@ -118,8 +128,17 @@ function Movies() {
   }, [searchString, movies, isShort]);
 
   const moviesToRender = useMemo(() => {
-    const countToRender = screenWidth < 768 ? 5 : screenWidth < 1280 ? 8 : 12;
-    const moreMovies = screenWidth < 1280 ? 2 : 3;
+    const countToRender =
+      screenWidth < MEDIUM_SIZE_SCREEN
+        ? CARDS_ON_SMALL_SCREEN
+        : screenWidth < BIG_SIZE_SCREEN
+        ? CARDS_ON_MEDIUM_SCREEN
+        : CARDS_ON_BIG_SCREEN;
+
+    const moreMovies =
+      screenWidth < BIG_SIZE_SCREEN
+        ? PLUS_CARDS_ON_MEDIUM_SCREEN
+        : PLUS_CARDS_ON_BIG_SCREEN;
 
     return filteredMovies
       .slice(0, countToRender + page * moreMovies)
