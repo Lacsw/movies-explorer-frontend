@@ -26,16 +26,25 @@ function Movies() {
   const fetchMovies = useCallback(async () => {
     try {
       setIsLoading(true);
-      const [initialMovies, savedMovies] = await Promise.all([
-        moviesApi.getMovies(),
-        mainApi.getSavedMovies(),
-      ]);
+      const initialMovies = await moviesApi.getMovies();
 
       setMovies(initialMovies);
-      setSavedMovies(savedMovies);
 
       localStorage.setItem('beatMovies', JSON.stringify(initialMovies));
-      localStorage.setItem('savedUserMovies', JSON.stringify(savedMovies));
+    } catch (error) {
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const fetchSavedMovies = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const savedMovies = await mainApi.getSavedMovies();
+      setHasError(true);
+
+      setSavedMovies(savedMovies);
     } catch (error) {
       setHasError(true);
     } finally {
@@ -51,7 +60,8 @@ function Movies() {
     const savedSearch = localStorage.getItem('search');
     const savedIsShort = localStorage.getItem('isShort');
     const savedBeatMovies = JSON.parse(localStorage.getItem('beatMovies'));
-    const savedUserMovies = JSON.parse(localStorage.getItem('savedUserMovies'));
+
+    fetchSavedMovies();
 
     if (savedSearch) {
       setSearchString(savedSearch);
@@ -62,10 +72,7 @@ function Movies() {
     if (savedBeatMovies) {
       setMovies(savedBeatMovies);
     }
-    if (savedUserMovies) {
-      setSavedMovies(savedUserMovies);
-    }
-  }, []);
+  }, [fetchSavedMovies]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -77,11 +84,14 @@ function Movies() {
 
   const handleSearch = useCallback(
     (inputValue) => {
+      if (!movies) {
+        fetchMovies();
+      }
+
       setHasError(false);
-      fetchMovies();
       setSearchString(inputValue);
     },
-    [fetchMovies]
+    [fetchMovies, movies]
   );
 
   const filteredMovies = useMemo(() => {
@@ -162,7 +172,7 @@ function Movies() {
           isShort={isShort}
         />
 
-        {hasError && (
+        {hasError && !savedMovies && (
           <p className='movies__search-error'>{errors.SERVER_CONNECTION}</p>
         )}
 
@@ -178,7 +188,7 @@ function Movies() {
           />
         )}
 
-        {filteredMovies > moviesToRender && (
+        {filteredMovies > moviesToRender && !isLoading && (
           <MoreMovies handleMoreBtnClick={handleMoreBtnClick} />
         )}
       </section>
