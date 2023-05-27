@@ -1,29 +1,24 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import './Register.scss';
 
 import Logo from '../Logo/Logo';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
+
+import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
 
 function Register({ onRegister }) {
-  const [formValue, setFormValue] = useState({
-    name: 'Roman',
-    email: 'frolloff1@yandex.ru',
-    password: 'testpass',
-  });
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(formValue);
+    onRegister(values);
   };
 
   return (
@@ -50,10 +45,16 @@ function Register({ onRegister }) {
                 minLength='2'
                 maxLength='40'
                 required
-                value={formValue.name}
+                value={values.name || ''}
                 onChange={handleChange}
+                pattern={NAME_REGEXP.source}
               />
-              <span className='signup__input-error name-input-error'></span>
+              <span
+                className={`signin__input-error name-input-error ${
+                  errors.name ? 'signin__input-error_active' : ''
+                }`}>
+                {errors.name}
+              </span>
             </label>
 
             <label className='signup__field'>
@@ -67,16 +68,22 @@ function Register({ onRegister }) {
                 minLength='2'
                 maxLength='40'
                 required
-                value={formValue.email}
+                value={values.email || ''}
                 onChange={handleChange}
+                pattern={EMAIL_REGEXP.source}
               />
-              <span className='signup__input-error name-input-error'></span>
+              <span
+                className={`signin__input-error email-input-error ${
+                  errors.email ? 'signin__input-error_active' : ''
+                }`}>
+                {errors.email}
+              </span>
             </label>
 
             <label className='signup__field'>
               Пароль
               <input
-                className='signup__input signup__input_type_password signup__input_error'
+                className='signup__input signup__input_type_password'
                 type='password'
                 name='password'
                 placeholder='Пароль'
@@ -84,25 +91,28 @@ function Register({ onRegister }) {
                 minLength='2'
                 maxLength='200'
                 required
-                value={formValue.password}
+                value={values.password || ''}
                 onChange={handleChange}
               />
-              <span className='signup__input-error password-input-error'>
-                Что-то пошло не так...
+              <span
+                className={`signin__input-error password-input-error ${
+                  errors.password ? 'signin__input-error_active' : ''
+                }`}>
+                {errors.password}
               </span>
             </label>
           </fieldset>
 
           <button
-            className='signup__submit-btn'
+            className={`signup__submit-btn ${
+              !isValid ? 'signup__submit-btn_disabled' : ''
+            }`}
             type='submit'>
             Зарегистрироваться
           </button>
           <p className='signup__already'>
             Уже зарегистрированы?
-            <Link
-              className='signup__link'
-              to={'/signin'}>
+            <Link className='signup__link' to={'/signin'}>
               Войти
             </Link>
           </p>

@@ -11,7 +11,7 @@ const PageNotFound = () => {
 
       <button
         className='not-found__button'
-        onClick={() => navigate(-1)}>
+        onClick={() => navigate(-2)}>
         Назад
       </button>
     </section>

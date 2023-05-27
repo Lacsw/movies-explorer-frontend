@@ -2,6 +2,7 @@
   margin: 70px 70px 10px;
   border-bottom: 1px solid #cbcbcb;
   padding-bottom: 69px;
+  position: relative;
 
   &__container {
     display: flex;
@@ -73,6 +74,19 @@
     }
   }
 
+  &__error {
+    position: absolute;
+    top: 80px;
+    left: 65px;
+    margin-left: -1px;
+    color: #ee3465;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: left;
+    transition: 0.3s;
+  }
+
   @media screen and (max-width: 1023px) {
     margin: 80px 30px 10px;
     padding-bottom: 109px;
@@ -110,6 +124,10 @@
     &__input {
       font-size: 14px;
       line-height: 20px;
+    }
+
+    &__error {
+      left: 5px;
     }
   }
 }

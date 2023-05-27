@@ -1,0 +1,19 @@
+.tooltip {
+  &__image {
+    width: 120px;
+    height: 120px;
+    align-self: center;
+    margin-top: 26px;
+  }
+
+  &__title {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 23px;
+  }
+}

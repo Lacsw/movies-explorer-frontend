@@ -1,9 +1,11 @@
 import './MoreMovies.scss';
 
-const MoreMovies = () => {
+const MoreMovies = ({ handleMoreBtnClick }) => {
   return (
     <section className='more-movies'>
-      <button className='more-movies__btn'>Ещё</button>
+      <button className='more-movies__btn' onClick={handleMoreBtnClick}>
+        Ещё
+      </button>
     </section>
   );
 };

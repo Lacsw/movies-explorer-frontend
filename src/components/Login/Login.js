@@ -1,31 +1,27 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import './Login.scss';
 
 import Logo from '../Logo/Logo';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({ handleLogin }) {
-  const [formValue, setFormValue] = useState({
-    email: 'frolloff1@yandex.ru',
-    password: '',
-  });
+import { EMAIL_REGEXP } from '../../utils/constants';
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+function Login({ onLogin }) {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formValue.email || !formValue.password) {
+    if (!values.email || !values.password) {
       return;
     }
-    handleLogin(formValue);
+    onLogin(values);
   };
 
   return (
@@ -52,10 +48,16 @@ function Login({ handleLogin }) {
                 minLength='2'
                 maxLength='40'
                 required
-                value={formValue.email}
+                value={values.email || ''}
                 onChange={handleChange}
+                pattern={EMAIL_REGEXP.source}
               />
-              <span className='signin__input-error name-input-error'></span>
+              <span
+                className={`signin__input-error email-input-error ${
+                  errors.email ? 'signin__input-error_active' : ''
+                }`}>
+                {errors.email}
+              </span>
             </label>
 
             <label className='signin__field'>
@@ -69,23 +71,29 @@ function Login({ handleLogin }) {
                 minLength='2'
                 maxLength='200'
                 required
-                value={formValue.password}
+                value={values.password || ''}
                 onChange={handleChange}
               />
-              <span className='signin__input-error password-input-error'></span>
+              <span
+                className={`signin__input-error password-input-error ${
+                  errors.password ? 'signin__input-error_active' : ''
+                }`}>
+                {errors.password}
+              </span>
             </label>
           </fieldset>
 
           <button
-            className='signin__submit-btn'
-            type='submit'>
+            className={`signin__submit-btn ${
+              !isValid ? 'signin__submit-btn_disabled' : ''
+            }`}
+            type='submit'
+            disabled={!isValid}>
             Войти
           </button>
           <p className='signin__already'>
             Еще не зарегистрированы?
-            <Link
-              className='signin__link'
-              to={'/signup'}>
+            <Link className='signin__link' to={'/signup'}>
               Регистрация
             </Link>
           </p>
